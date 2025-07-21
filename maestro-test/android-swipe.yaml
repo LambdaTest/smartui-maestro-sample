@@ -1,0 +1,17 @@
+appId: org.wikipedia
+---
+- launchApp
+- tapOn:
+    id: "org.wikipedia:id/fragment_onboarding_forward_button"
+- takeScreenshot:
+    path: ./screenshots/wikipedia-onboarding-home-1
+- tapOn:
+    id: "org.wikipedia:id/fragment_onboarding_forward_button"
+- takeScreenshot:
+    path: ./screenshots/wikipedia-onboarding-home-2
+- tapOn:
+    id: "org.wikipedia:id/fragment_onboarding_forward_button"
+- takeScreenshot:
+      path: ./screenshots/wikipedia-onboarding-home-3
+- tapOn:
+    id: "org.wikipedia:id/fragment_onboarding_done_button"
