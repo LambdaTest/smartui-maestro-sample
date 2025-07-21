@@ -2,49 +2,66 @@
 This repo provides a fully working setup to capture mobile app screenshots using Maestro and run visual regression testing via SmartUI on LambdaTest HyperExecute.
 
 # Prerequisites
-- LambdaTest account with SmartUI access
+- LambdaTest account with SmartUI and HyperExecute access
 - LambdaTest username, access key, and SmartUI project token
 - Your mobile app file (.apk or .ipa)
 
 # How to Use This Repo
 
-# Clone the repo
-git clone https://github.com/lambdatest/smartui-maestro-hyperexecute.git
-cd smartui-maestro-hyperexecute
-# 2. Install CLI dependencies
+## 1.  Clone the repo
+```
+git clone https://github.com/lambdatest/smartui-maestro-sample.git
+cd smartui-maestro-sample
+```
+## 2. Install CLI dependencies
 
-# Install HyperExecute CLI
+### Install HyperExecute CLI and make it executable
+```
 curl -O https://downloads.lambdatest.com/hyperexecute/linux/hyperexecute
 chmod +x hyperexecute
-# Install SmartUI CLI
+``` 
+### Install SmartUI CLI
+```
 npm install -g @lambdatest/smartui-cli
-# 3. Set your credentials
+```
 
+## 3. Set your credentials
+```
 export LT_USERNAME="your_username"
 export LT_ACCESS_KEY="your_access_key"
-
-# 4. Upload your app to LambdaTest
-
-curl -u "$LT_USERNAME:$LT_ACCESS_KEY" \
--X POST "https://manual-api.lambdatest.com/app/upload/realDevice" \
--F "appFile=@./<your-app-file>.apk" \
+```
+## 4. Upload your app to LambdaTest via curl or on platform
+```
+curl -u "$LT_USERNAME:$LT_ACCESS_KEY"
+-X POST "https://manual-api.lambdatest.com/app/upload/realDevice"
+-F "appFile=@./sample.apk"
 -F "name=SampleApp"
+```
 Copy the returned appId for use in Real Device YAML config.
 
-# 5. Configure your project token and app ID
+## 5. Configure your project token and app ID
 
 Update the following in the relevant YAML files (yaml/maestro_*.yaml):
+```
+env:
+  MAESTRO: true
+  PROJECT_TOKEN: <your-project-token>  
+framework:
+  args:
+    appId: lt://<appId>
+```
 
-PROJECT_TOKEN in env:
-appId in framework.args
-# 6. Run tests on HyperExecute
+## 6. Run tests on HyperExecute
 For Virtual Device implementation:
-
+```
 ./hyperexecute --config yaml/maestro_Emulator_HyperEx.yaml
-For real device execution:
-
+```
+For Real Device execution:
+```
 ./hyperexecute --config yaml/maestro_Real_Devices.yaml
-# 7. View your results
+```
+
+## 7. View your results
 
 SmartUI Build Dashboard: https://smartui.lambdatest.com/
 
