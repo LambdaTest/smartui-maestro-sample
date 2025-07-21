@@ -1,0 +1,67 @@
+# HyperExecute YAML configuration for running Maestro + SmartUI on Real Android Devices
+
+version: "0.2"
+autosplit: true
+runson: android
+concurrency: 2
+
+# Install dependencies and run setup
+pre:
+  - chmod +x maestro-test/setup-script.sh
+  - chmod +x maestro-test/runTest.sh
+  - maestro-test/setup-script.sh
+  - npm i @lambdatest/smartui-cli #Installs support for SmartUI
+
+testDiscovery:
+  command: cat ./maestro-test/discover_rd.txt
+  mode: static
+  type: raw
+
+# Command to run the tests using the testRunnerCommand
+testRunnerCommand: ./maestro-test/runTest.sh $test
+
+# Only report the status of the test framework
+frameworkStatusOnly: true
+
+# Enable dynamic allocation of resources
+dynamicAllocation: true
+
+
+
+
+
+env:
+  MAESTRO: true
+  PROJECT_TOKEN: <project token> #“Create a new project at smartui.lambdatest.com/newProject or enter your existing project token here.”
+
+framework:
+  name: raw
+  args:
+    devices: [".*"]                    # Run on any connected real device
+    video: true
+    deviceLog: true
+    appId: lt://<appId> #upload your apk file for android at applive.lambdatest.com/app and enter the App ID here
+    
+    
+    # Build name for identification on the automation dashboard
+    buildName: maestro-smartui
+    queueTimeout: 600
+    # Configuration fields specific to running raw tests
+    region: ap
+    disableReleaseDevice: true
+    isRealMobile: true
+    reservation: false
+    platformName: android
+jobLabel: ['Maestro', 'Real Device','SmartUI', 'Android']
+
+
+project:
+  name: maestro-rd-android
+
+differentialUpload:
+  enabled: true
+  ttlHours: 360
+
+runtime:
+  - language: node
+    version: "20"

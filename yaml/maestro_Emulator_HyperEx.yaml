@@ -1,0 +1,71 @@
+# HyperExecute YAML configuration for running Maestro + SmartUI on Android Emulator
+
+version: "0.2"
+autosplit: true
+runson: android
+concurrency: 2
+
+# Setup scripts and dependencies
+pre:
+  - chmod +x maestro-test/setup-script.sh
+  - chmod +x maestro-test/runTest.sh
+  - maestro-test/setup-script.sh
+  - npm i @lambdatest/smartui-cli #Installs support for SmartUI
+
+# Test discovery configuration
+testDiscovery:
+  # Command to discover tests from the test.txt file
+  command: cat ./maestro-test/discover.txt
+  # Test discovery mode can be static/dynamic
+  mode: static
+  # Test type is raw (custom test implementation)
+  type: raw
+
+# Command to run the tests using the testRunnerCommand
+testRunnerCommand: ./maestro-test/runTest.sh $test
+
+# Only report the status of the test framework
+frameworkStatusOnly: true
+
+# Enable dynamic allocation of resources
+dynamicAllocation: true
+
+# Pre-install required dependencies using pip
+# will need java and maestro inside the container
+
+
+env:
+  MAESTRO: true
+  PROJECT_TOKEN: <your-project-token> # add your smartui cli project token
+
+framework:
+  name: raw
+  args:
+    # List of devices to run tests on (two Pixel 5 devices in this case)
+    devices: ["Galaxy S22 Ultra 5G-14", "Galaxy Note10+-11"]
+    # Enable or disable video recording support
+    video: true
+    # Enable or disable device log support
+    deviceLog: true
+    # App ID to be installed (mandatory field, using <app_id>)
+    appId: lt://<appId>
+        # Build name for identification on the automation dashboard
+    buildName: maestro-t1
+    queueTimeout: 600
+    # Configuration fields specific to running raw tests
+    isRealMobile: false
+    platformName: android
+jobLabel: ['Emulator', 'Maestro', 'HyperEx-Infra', 'Android']
+
+# SmartUI project setup and TTL
+project:
+  name: maestro-emu-android
+
+differentialUpload:
+  enabled: true
+  ttlHours: 360
+
+
+runtime:
+  - language: node
+    version: "20"

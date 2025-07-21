@@ -1,0 +1,5 @@
+appId: org.wikipedia
+---
+- launchApp
+- takeScreenshot:
+    path: ./screenshots/wikipedia-onboarding-home-4
