@@ -17,7 +17,7 @@ cd smartui-maestro-sample
 
 ### Install HyperExecute CLI and make it executable
 ```
-curl -O https://downloads.lambdatest.com/hyperexecute/linux/hyperexecute
+curl -O https://downloads.lambdatest.com/hyperexecute/darwin/hyperexecute
 chmod +x hyperexecute
 ``` 
 ### Install SmartUI CLI
