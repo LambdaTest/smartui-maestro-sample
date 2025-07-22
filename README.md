@@ -37,6 +37,12 @@ curl -u "$LT_USERNAME:$LT_ACCESS_KEY"
 -F "appFile=@./sample.apk"
 -F "name=SampleApp"
 ```
+```
+https://applive.lambdatest.com/app
+```
+```
+https://app.lambdatest.com/console/realtime/app
+```
 Copy the returned appId for use in Real Device YAML config.
 
 ## 5. Configure your project token and app ID
