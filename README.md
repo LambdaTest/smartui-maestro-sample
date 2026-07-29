@@ -17,7 +17,7 @@ With TestMu AI (Formerly LambdaTest), you can run SmartUI visual regression test
 
 ### Prerequisites
 
-- Node.js and npm (latest stable). Install SmartUI CLI: npm install -g @lambdatest/smartui-cli
+- Node.js and npm (latest stable). Install SmartUI CLI: npm install -g @lambdatest/smartui-cli@latest
 - A TestMu AI (Formerly LambdaTest) account with your username and access key
 
 ### Setup
@@ -26,7 +26,7 @@ Clone and install dependencies:
 
 ```bash
 git clone https://github.com/lambdatest/smartui-maestro-sample && cd smartui-maestro-sample
-npm install -g @lambdatest/smartui-cli
+npm install -g @lambdatest/smartui-cli@latest
 ```
 
 Set your credentials as environment variables.
