@@ -10,7 +10,7 @@ pre:
   - chmod +x maestro-test/setup-script.sh
   - chmod +x maestro-test/runTest.sh
   - maestro-test/setup-script.sh
-  - npm i @lambdatest/smartui-cli #Installs support for SmartUI
+  - npm i @lambdatest/smartui-cli@latest #Installs support for SmartUI
 
 testDiscovery:
   command: cat ./maestro-test/discover_rd.txt
